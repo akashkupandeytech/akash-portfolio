@@ -729,3 +729,167 @@ button {
     font-size: 27px;
   }
 }
+/* ================= CONTACT ================= */
+
+.contact-section {
+  padding: 120px 0;
+  background: #0c0c0c;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 100px;
+}
+
+.contact-intro h3 {
+  font-size: 36px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.contact-intro > p {
+  color: #888;
+  line-height: 1.8;
+  max-width: 450px;
+}
+
+.contact-details {
+  margin-top: 45px;
+}
+
+.contact-details div {
+  padding: 20px 0;
+  border-bottom: 1px solid #242424;
+}
+
+.contact-details span {
+  display: block;
+  color: #666;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.contact-details strong {
+  color: #ddd;
+  font-size: 15px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-group label {
+  color: #aaa;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 16px;
+
+  background: #111;
+  border: 1px solid #292929;
+
+  color: #fff;
+  outline: none;
+
+  font-size: 14px;
+  resize: vertical;
+
+  transition: 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #d4af37;
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+  color: #555;
+}
+
+.send-btn {
+  width: fit-content;
+
+  padding: 15px 28px;
+
+  background: #d4af37;
+  border: none;
+
+  color: #080808;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.send-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+  border-top: 1px solid #222;
+  padding: 30px 0;
+  background: #080808;
+}
+
+.footer-container {
+  width: min(1100px, 92%);
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer p {
+  color: #555;
+  font-size: 12px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 25px;
+}
+
+.footer-links a {
+  color: #666;
+  font-size: 12px;
+  transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #d4af37;
+}
+
+@media (max-width: 800px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
