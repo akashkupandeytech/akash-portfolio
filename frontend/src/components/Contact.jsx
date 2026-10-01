@@ -8,23 +8,26 @@ function Contact() {
   });
 
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const API_URL =
+    import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    });
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("FORM SUBMITTED");
-
-    setStatus("Sending...");
+    setLoading(true);
+    setStatus("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const response = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,8 +37,8 @@ function Contact() {
 
       const data = await response.json();
 
-      if (data.success) {
-        setStatus("Message sent successfully! ✅");
+      if (response.ok && data.success) {
+        setStatus("Message sent successfully! ✓");
 
         setFormData({
           name: "",
@@ -46,8 +49,10 @@ function Contact() {
         setStatus(data.message || "Something went wrong.");
       }
     } catch (error) {
-      console.error(error);
-      setStatus("Unable to connect to server.");
+      console.error("Contact form error:", error);
+      setStatus("Unable to connect to server. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,8 +61,10 @@ function Contact() {
       <section className="contact-section" id="contact">
         <div className="section-container">
 
+          {/* Heading */}
           <div className="section-heading">
             <p>GET IN TOUCH</p>
+
             <h2>
               Let's <span>Connect</span>
             </h2>
@@ -65,93 +72,153 @@ function Contact() {
 
           <div className="contact-grid">
 
+            {/* LEFT SIDE */}
             <div className="contact-intro">
-              <h3>Have a project in mind?</h3>
 
-              <p>
+              <p className="contact-label">
+                HAVE A PROJECT IN MIND?
+              </p>
+
+              <h3>
+                Let's build something
+                <span> meaningful.</span>
+              </h3>
+
+              <p className="contact-description">
                 I'm always interested in working on new projects,
                 learning new technologies and creating useful
                 digital experiences.
               </p>
 
+              {/* Contact Details */}
               <div className="contact-details">
 
-                <div>
+                <div className="contact-detail-item">
                   <span>Email</span>
-                  <strong>your-email@gmail.com</strong>
+
+                  <a href="mailto:akash.ku.pandey.tech@gmail.com">
+                    akash.ku.pandey.tech@gmail.com
+                  </a>
                 </div>
 
-                <div>
+                <div className="contact-detail-item">
                   <span>Location</span>
+
                   <strong>India</strong>
                 </div>
+
+                <div className="contact-detail-item">
+                  <span>Availability</span>
+
+                  <strong className="available">
+                    ● Available for projects
+                  </strong>
+                </div>
+
+              </div>
+
+              {/* Social Links */}
+              <div className="contact-social">
+
+                <a
+                  href="https://github.com/akashkupandeytech"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub ↗
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  LinkedIn ↗
+                </a>
 
               </div>
             </div>
 
+            {/* RIGHT SIDE - FORM */}
             <form
               className="contact-form"
               onSubmit={handleSubmit}
             >
 
               <div className="input-group">
-                <label>Name</label>
+                <label htmlFor="name">
+                  Your Name
+                </label>
 
                 <input
+                  id="name"
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Your name"
+                  placeholder="Enter your name"
                   required
                 />
               </div>
 
               <div className="input-group">
-                <label>Email</label>
+                <label htmlFor="email">
+                  Email Address
+                </label>
 
                 <input
+                  id="email"
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="Your email"
+                  placeholder="Enter your email"
                   required
                 />
               </div>
 
               <div className="input-group">
-                <label>Message</label>
+                <label htmlFor="message">
+                  Your Message
+                </label>
 
                 <textarea
+                  id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows="5"
+                  rows="6"
                   placeholder="Tell me about your project..."
                   required
-                ></textarea>
+                />
               </div>
 
               <button
                 type="submit"
                 className="send-btn"
+                disabled={loading}
               >
-                Send Message →
+                {loading ? "Sending..." : "Send Message →"}
               </button>
 
               {status && (
-                <p className="form-status">
+                <p
+                  className={`form-status ${
+                    status.includes("successfully")
+                      ? "success"
+                      : "error"
+                  }`}
+                >
                   {status}
                 </p>
               )}
 
             </form>
-
           </div>
         </div>
       </section>
 
+      {/* FOOTER */}
       <footer className="footer">
         <div className="footer-container">
 
@@ -162,8 +229,14 @@ function Contact() {
 
           <div className="footer-links">
             <a href="#home">Home</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+
+            <a href="#projects">
+              Projects
+            </a>
+
+            <a href="#contact">
+              Contact
+            </a>
           </div>
 
         </div>

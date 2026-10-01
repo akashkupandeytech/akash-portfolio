@@ -1,16 +1,34 @@
+import profileImage from "../Akash.png";
+
 function Hero() {
   return (
     <section className="hero" id="home">
+
+      {/* Background Decorations */}
+      <div className="hero-circle circle-left"></div>
+      <div className="hero-circle circle-right"></div>
+
+      <div className="hero-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
       <div className="hero-container">
 
+        {/* ================= LEFT CONTENT ================= */}
         <div className="hero-content">
+
           <p className="hero-small">
             HELLO, I'M
+            <span className="hero-line"></span>
           </p>
 
           <h1>
             AKASH
-            <span> PANDEY</span>
+            <span>PANDEY</span>
           </h1>
 
           <h2>
@@ -23,48 +41,81 @@ function Hero() {
             and interactive digital experiences.
           </p>
 
+          {/* ================= BUTTONS ================= */}
           <div className="hero-buttons">
-            <a href="#projects" className="btn primary-btn">
+
+            <a
+              href="#projects"
+              className="btn primary-btn"
+            >
               View My Work
+              <span>→</span>
             </a>
 
-            <a href="#contact" className="btn secondary-btn">
+            <a
+              href="#contact"
+              className="btn secondary-btn"
+            >
               Contact Me
+              <span>✉</span>
             </a>
+
           </div>
 
+          {/* ================= SOCIAL LINKS ================= */}
           <div className="hero-social">
-            <a href="https://github.com/" target="_blank" rel="noreferrer">
+
+            <a
+              href="https://github.com/akashkupandeytech"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className="social-icon">◉</span>
               GitHub
             </a>
 
-            <a href="https://linkedin.com/" target="_blank" rel="noreferrer">
+            <div className="social-divider"></div>
+
+            <a
+              href="https://www.linkedin.com/in/akashkupandeytech/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className="social-icon">in</span>
               LinkedIn
             </a>
+
           </div>
+
         </div>
 
+        {/* ================= RIGHT IMAGE ================= */}
         <div className="hero-image">
-          <div className="image-circle">
-            <div className="image-placeholder">
-              AP
-            </div>
+
+          <div className="image-frame">
+
+            <img
+              src={profileImage}
+              alt="Akash Pandey"
+              className="profile-image"
+            />
+
           </div>
 
-          <div className="floating-card card-one">
-            React.js
-          </div>
+          {/* Decorative Borders */}
+          <div className="frame-border border-one"></div>
 
-          <div className="floating-card card-two">
-            Node.js
-          </div>
+          <div className="frame-border border-two"></div>
 
-          <div className="floating-card card-three">
-            MongoDB
-          </div>
+          {/* Glow Dots */}
+          <div className="glow-dot dot-one"></div>
+
+          <div className="glow-dot dot-two"></div>
+
         </div>
 
       </div>
+
     </section>
   );
 }

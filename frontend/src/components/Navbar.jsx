@@ -8,20 +8,40 @@ function Navbar() {
   };
 
   return (
-    <header className="navbar">
+    <nav className="navbar">
       <div className="nav-container">
+
+        {/* Logo */}
         <a href="#home" className="logo" onClick={closeMenu}>
           AKASH<span>.</span>
         </a>
 
-        <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
-          <a href="#home" onClick={closeMenu}>Home</a>
-          <a href="#about" onClick={closeMenu}>About</a>
-          <a href="#skills" onClick={closeMenu}>Skills</a>
-          <a href="#projects" onClick={closeMenu}>Projects</a>
-          <a href="#contact" onClick={closeMenu}>Contact</a>
-        </nav>
+        {/* Desktop / Mobile Links */}
+        <div className={`nav-links ${menuOpen ? "active" : ""}`}>
 
+          <a href="#home" onClick={closeMenu}>
+            Home
+          </a>
+
+          <a href="#about" onClick={closeMenu}>
+            About
+          </a>
+
+          <a href="#skills" onClick={closeMenu}>
+            Skills
+          </a>
+
+          <a href="#projects" onClick={closeMenu}>
+            Projects
+          </a>
+
+          <a href="#contact" onClick={closeMenu}>
+            Contact
+          </a>
+
+        </div>
+
+        {/* Mobile Menu */}
         <button
           className="menu-btn"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -29,8 +49,9 @@ function Navbar() {
         >
           {menuOpen ? "✕" : "☰"}
         </button>
+
       </div>
-    </header>
+    </nav>
   );
 }
 

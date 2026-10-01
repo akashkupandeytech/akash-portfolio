@@ -2,36 +2,54 @@ function About() {
   return (
     <section className="about-section" id="about">
       <div className="section-container">
+
+        {/* Heading */}
         <div className="section-heading">
-          <p>GET TO KNOW ME</p>
-          <h2>About <span>Me</span></h2>
+          <p>ABOUT ME</p>
+          <h2>
+            Who <span>I Am</span>
+          </h2>
         </div>
 
         <div className="about-grid">
+
+          {/* LEFT */}
           <div className="about-text">
-            <h3>I'm Akash Pandey, a Full Stack Developer.</h3>
+
+            <h3>
+              I'm Akash Pandey, a Full Stack Developer who enjoys
+              building modern web applications.
+            </h3>
 
             <p>
-              I am an IT student passionate about web development,
-              software development and building real-world projects.
-              I enjoy learning new technologies and converting ideas
-              into useful digital products.
+              I am a B.Tech IT student interested in web development,
+              software development and modern technologies.
             </p>
 
             <p>
-              My current focus is on the MERN stack, modern frontend
-              development and improving my problem-solving skills.
+              I work with technologies like React.js, Node.js,
+              Express.js and MongoDB to create responsive, scalable
+              and user-friendly applications.
             </p>
 
-            <a href="#contact" className="about-btn">
-              Let's Connect →
-            </a>
+            <p>
+              I enjoy learning new technologies and turning ideas
+              into practical digital products.
+            </p>
+
           </div>
 
+          {/* RIGHT */}
           <div className="about-info">
+
             <div className="info-item">
               <span>Name</span>
               <strong>Akash Pandey</strong>
+            </div>
+
+            <div className="info-item">
+              <span>Education</span>
+              <strong>B.Tech — Information Technology</strong>
             </div>
 
             <div className="info-item">
@@ -41,14 +59,16 @@ function About() {
 
             <div className="info-item">
               <span>Stack</span>
-              <strong>MERN</strong>
+              <strong>MERN Stack</strong>
             </div>
 
             <div className="info-item">
               <span>Focus</span>
               <strong>Web Development</strong>
             </div>
+
           </div>
+
         </div>
       </div>
     </section>

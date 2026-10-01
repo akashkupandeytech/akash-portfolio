@@ -1,22 +1,22 @@
 const skills = [
   {
     name: "React.js",
-    level: "Frontend",
+    level: "Frontend Development",
     icon: "⚛",
   },
   {
     name: "JavaScript",
-    level: "Language",
+    level: "Programming Language",
     icon: "JS",
   },
   {
     name: "Node.js",
-    level: "Backend",
+    level: "Backend Development",
     icon: "N",
   },
   {
     name: "Express.js",
-    level: "Backend",
+    level: "Backend Framework",
     icon: "E",
   },
   {
@@ -31,12 +31,12 @@ const skills = [
   },
   {
     name: "HTML & CSS",
-    level: "Frontend",
+    level: "Frontend Development",
     icon: "</>",
   },
   {
     name: "Git & GitHub",
-    level: "Tools",
+    level: "Version Control",
     icon: "Git",
   },
 ];
@@ -46,26 +46,49 @@ function Skills() {
     <section className="skills-section" id="skills">
       <div className="section-container">
 
+        {/* Section Heading */}
         <div className="section-heading">
           <p>MY TECHNOLOGIES</p>
-          <h2>Skills & <span>Tools</span></h2>
+
+          <h2>
+            Skills & <span>Tools</span>
+          </h2>
         </div>
 
+        {/* Skills Grid */}
         <div className="skills-grid">
-          {skills.map((skill) => (
-            <div className="skill-card" key={skill.name}>
+
+          {skills.map((skill, index) => (
+            <div
+              className="skill-card"
+              key={skill.name}
+            >
+
+              {/* Number */}
+              <span className="skill-number">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+              {/* Icon */}
               <div className="skill-icon">
                 {skill.icon}
               </div>
 
-              <div>
+              {/* Content */}
+              <div className="skill-content">
                 <h3>{skill.name}</h3>
+
                 <p>{skill.level}</p>
               </div>
 
-              <span className="skill-arrow">↗</span>
+              {/* Arrow */}
+              <span className="skill-arrow">
+                ↗
+              </span>
+
             </div>
           ))}
+
         </div>
 
       </div>
