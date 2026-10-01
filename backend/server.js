@@ -8,7 +8,13 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  })
+);
+
 app.use(express.json());
 
 // Routes
@@ -17,21 +23,37 @@ app.use("/api/contact", contactRoutes);
 // Test route
 app.get("/", (req, res) => {
   res.json({
+    success: true,
     message: "Akash Portfolio API is running 🚀",
   });
 });
 
-const PORT = process.env.PORT || 5000;
+// MongoDB connection
+let isConnected = false;
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
+async function connectDB() {
+  if (isConnected) return;
+
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    isConnected = true;
     console.log("MongoDB connected successfully");
-
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-  })
-  .catch((error) => {
+  } catch (error) {
     console.error("MongoDB connection error:", error.message);
-  });
+    throw error;
+  }
+}
+
+// Vercel serverless handler
+export default async function handler(req, res) {
+  try {
+    await connectDB();
+    return app(req, res);
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Database connection failed",
+      error: error.message,
+    });
+  }
+}
